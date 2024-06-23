@@ -1,4 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using ArticulosOficinaApp.Server.Context;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Se añaden conexion a Base de datos 
+
+var connectionString = builder.Configuration.GetConnectionString("Connection");
+
+// Registrar servicio para la conexion
+builder.Services.AddDbContext<AppDbContext>(
+    options => options.UseSqlServer(connectionString)
+);
+
 
 // Add services to the container.
 
